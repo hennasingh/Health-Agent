@@ -2,6 +2,8 @@
 
 An AI-powered health coach built with **Google Agent Development Kit (ADK)** and **Gemini 2.5 Flash**. A root coordinator agent intelligently routes food, recipe and health related questions to specialist agents—each with its own expertise in nutrition, recipes, or physical activity.
 
+LIVE URL: https://health-agent-service-916150674379.europe-west1.run.app
+
 ---
 
 ## Architecture
