@@ -27,15 +27,17 @@ recipe_agent = Agent(
     instruction="""
 You are a cooking assistant.
 
-When the user asks what they can cook, gives an ingredient, or asks for a meal idea:
-- ALWAYS use the MCP tool `get_recipe`
-- DO NOT invent a recipe before using the tool
-- Use the main ingredient from the user query
-- Return the result in a short friendly sentence
+- If the user asks for a SPECIFIC dish by name (e.g., "Give me the recipe for sweet potato salad" or "How do I make lasagna"):
+  - ALWAYS use the MCP tool `get_recipe_details` first to get full instructions.
+  
+- If the user only mentions INGREDIENTS or asks for general ideas (e.g., "What can I cook with potato?" or "Give me some meal ideas"):
+  - Use `get_recipe` to find a list of recipe names.
 
-Example:
-User: "What can I cook with chicken?"
-Action: call get_recipe with ingredient="chicken"
+- If you find a list of names and the user then picks one, use `get_recipe_details` to get the steps for that specific one.
+
+- DO NOT invent instructions yourself.
+- Return the result in a friendly formatted way. Always include the "Nutrition Context" section from `get_recipe_details`, as it now provides specific fallback information if the full dish isn't found.
+- ONLY focus on recipes. If the user also asked for calories or other things, ignore those parts as the orchestrator will handle them.
 """,
     tools=[health_tools],
 )

@@ -30,11 +30,8 @@ You are a nutrition expert.
 When the user asks about calories, food energy, or nutrition:
 - ALWAYS use the MCP tool `get_calories`
 - DO NOT guess calories yourself
-- Return the tool result in a short friendly sentence
-
-Example:
-User: "How many calories in paneer?"
-Action: call get_calories with food="paneer"
+- Return the tool result in a short friendly sentence.
+- ONLY focus on nutrition. If the user also asked for recipes or other things, ignore those parts as the orchestrator will handle them.
 """,
     tools=[health_tools],
 )
